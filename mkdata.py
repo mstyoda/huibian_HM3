@@ -24,14 +24,14 @@ out.write('''
 
 ''')
 
-n = 10000
+n = 3000
 a = []
 cnt = 0
 for i in range(0,n):
 	per = random.randint(1,100)
-	if (per <= 60) or (len(a) == 0):
+	if (per <= 80) or (len(a) == 0):
 		cnt += 1
-		size = random.randint(1,100)
+		size = random.randint(1,30)
 		a.append(cnt)
 		out.write('''
 	#begin allocate id = %d
