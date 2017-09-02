@@ -16,7 +16,11 @@ _start:
 out.write('''
 #first print brk(0)
 	movl $4, %edx
-	movl %eax, %ecx
+	
+	push %eax
+	movl %esp, %ecx
+	addl $4,%esp
+
 	movl $1, %ebx
 	movl $4, %eax
 	int $0x80
@@ -53,7 +57,7 @@ for i in range(0,n):
 		a.remove(a[k - 1])
 
 out.write('''
-	
+
 #last print brk(0)
 	
 	movl $45,%eax
@@ -61,7 +65,11 @@ out.write('''
 	int $0x80
 
 	movl $4, %edx
-	movl %eax, %ecx
+
+	push %eax
+	movl %esp, %ecx
+	addl $4,%esp
+	
 	movl $1, %ebx
 	movl $4, %eax
 	int $0x80
