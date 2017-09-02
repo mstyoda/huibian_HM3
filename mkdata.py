@@ -13,6 +13,16 @@ _start:
 
 ''')
 
+out.write('''
+#first print brk(0)
+	movl $4, %edx
+	movl %eax, %ecx
+	movl $1, %ebx
+	movl $4, %eax
+	int $0x80
+
+''')
+
 n = 10
 a = []
 cnt = 0
@@ -42,6 +52,21 @@ for i in range(0,n):
 			'''%(a[k - 1] * 4))
 		a.remove(a[k - 1])
 
+out.write('''
+	
+#last print brk(0)
+	
+	movl $SYS_BRK,%eax
+	movl 0,%ebx
+	int $0x80
+
+	movl $4, %edx
+	movl %eax, %ecx
+	movl $1, %ebx
+	movl $4, %eax
+	int $0x80
+
+''')
 
 out.write('''
 
