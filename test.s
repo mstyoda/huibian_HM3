@@ -91,11 +91,6 @@ _start:
 	movl 0,%ebx
 	int $0x80
 
-	pushl %eax
-	pushl $msg
-	call printf
-	addl $8,%esp
-
 	#END OF THE TEST
 	movl $0, %ebx
 	movl $1, %eax
