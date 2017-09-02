@@ -1,8 +1,7 @@
 
 #test.s
 msg:
-	.ascii "Hello world\n"
-	len = .-msg
+	.ascii "brk(0):%d\n\0"
 
 .section .text
 .globl _start
@@ -14,14 +13,9 @@ _start:
 
 
 #first print brk(0)
-	movl $4, %edx
-
-	leal (%esp), %ecx
-
-	movl $1, %ebx
-	movl $4, %eax
-	int $0x80
-
+	pushl %eax
+	pushl $msg
+	call printf
 
 	#begin allocate id = 1
 		pushl $710
@@ -96,16 +90,9 @@ _start:
 	movl 0,%ebx
 	int $0x80
 
-	movl $4, %edx
-
-	push %eax
-	movl %esp, %ecx
-	addl $4,%esp
-	
-	movl $1, %ebx
-	movl $4, %eax
-	int $0x80
-
+	pushl %eax
+	pushl $msg
+	call printf
 
 
 	#END OF THE TEST
