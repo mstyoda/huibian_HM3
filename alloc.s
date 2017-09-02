@@ -1,4 +1,6 @@
 # alloc.s
+
+.include "base.s"
 .section .text
 
 .globl allocate_init
