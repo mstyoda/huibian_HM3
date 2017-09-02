@@ -14,9 +14,9 @@ _start:
 
 
 #first print brk(0)
-	movl $len, %edx
-	
-	movl $msg, %ecx
+	movl $4, %edx
+
+	leal (%esp), %ecx
 
 	movl $1, %ebx
 	movl $4, %eax
