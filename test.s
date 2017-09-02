@@ -1,5 +1,8 @@
 
 #test.s
+msg:
+	.ascii "Hello world\n"
+	len = .-msg
 
 .section .text
 .globl _start
@@ -11,11 +14,9 @@ _start:
 
 
 #first print brk(0)
-	movl $4, %edx
+	movl $len, %edx
 	
-	push %eax
-	movl %esp, %ecx
-	addl $4,%esp
+	movl $msg, %ecx
 
 	movl $1, %ebx
 	movl $4, %eax
