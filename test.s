@@ -87,10 +87,6 @@ _start:
 
 #last print brk(0)
 	
-	movl $45,%eax
-	movl 0,%ebx
-	int $0x80
-
 	#END OF THE TEST
 	movl $0, %ebx
 	movl $1, %eax
