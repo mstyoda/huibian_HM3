@@ -9,7 +9,7 @@ msg:
 .globl _start
 _start:
 	movl %esp,%ebp
-	subl $100000,%esp
+	subl $14000,%esp
 
 	call allocate_init
 
