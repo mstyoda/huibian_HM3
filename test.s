@@ -1,6 +1,5 @@
 
 #test.s
-.include "alloc.s"
 
 .section .text
 .globl _start
