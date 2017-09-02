@@ -1,0 +1,7 @@
+# huibian_HM3
+
+##学号：2015011340 姓名：骆轩源
+
+##以下命令在64位操作系统可以运行
+
+`as -gstabs -o alloc.o write-records.s --32`
