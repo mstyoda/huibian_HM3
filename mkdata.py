@@ -2,7 +2,6 @@ import random
 out = open("test.s","w")
 out.write('''
 #test.s
-.include "alloc.s"
 
 .section .text
 .globl _start
@@ -14,7 +13,7 @@ _start:
 
 ''')
 
-n = 1000
+n = 5
 a = []
 cnt = 0
 for i in range(0,n):
