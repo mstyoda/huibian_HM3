@@ -1,8 +1,10 @@
 import random
 out = open("test.s","w")
+
 out.write('''
 #test.s
-
+msg:
+	.ascii "brk(0):%d\\n"
 .section .text
 .globl _start
 _start:
@@ -15,24 +17,19 @@ _start:
 
 out.write('''
 #first print brk(0)
-	movl $4, %edx
-	
-	push %eax
-	movl %esp, %ecx
-	addl $4,%esp
-
-	movl $1, %ebx
-	movl $4, %eax
-	int $0x80
+	pushl %eax
+	pushl $msg
+	call printf
+	addl $8,%esp
 
 ''')
 
-n = 10
+n = 100
 a = []
 cnt = 0
 for i in range(0,n):
 	per = random.randint(1,100)
-	if (per > 60) or (len(a) == 0):
+	if (per <= 60) or (len(a) == 0):
 		cnt += 1
 		size = random.randint(100,1000)
 		a.append(cnt)
@@ -59,20 +56,14 @@ for i in range(0,n):
 out.write('''
 
 #last print brk(0)
-	
-	movl $45,%eax
-	movl 0,%ebx
+	movl $45, %eax
+	movl $0, %ebx
 	int $0x80
 
-	movl $4, %edx
-
-	push %eax
-	movl %esp, %ecx
-	addl $4,%esp
-	
-	movl $1, %ebx
-	movl $4, %eax
-	int $0x80
+	pushl %eax
+	pushl $msg
+	call printf
+	addl $8,%esp
 
 ''')
 
@@ -83,3 +74,4 @@ out.write('''
 	movl $1, %eax
 	int $0x80
 '''	)
+out.close()
