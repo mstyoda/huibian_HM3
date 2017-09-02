@@ -56,7 +56,7 @@ out.write('''
 	
 #last print brk(0)
 	
-	movl $SYS_BRK,%eax
+	movl $45,%eax
 	movl 0,%ebx
 	int $0x80
 

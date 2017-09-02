@@ -19,10 +19,17 @@ _start:
 
 
 	#begin allocate id = 1
-		pushl $171
+		pushl $389
 		call allocate
 		addl $4,%esp
 		movl %eax,4(%ebp)
+	#end allocate
+			
+	#begin allocate id = 2
+		pushl $169
+		call allocate
+		addl $4,%esp
+		movl %eax,8(%ebp)
 	#end allocate
 			
 	#begin deallocate
@@ -31,24 +38,18 @@ _start:
 		addl $4,%esp
 	#end deallocate
 			
-	#begin allocate id = 2
-		pushl $916
-		call allocate
-		addl $4,%esp
-		movl %eax,8(%ebp)
-	#end allocate
-			
-	#begin deallocate
-		pushl 8(%ebp)
-		call deallocate
-		addl $4,%esp
-	#end deallocate
-			
 	#begin allocate id = 3
-		pushl $220
+		pushl $238
 		call allocate
 		addl $4,%esp
 		movl %eax,12(%ebp)
+	#end allocate
+			
+	#begin allocate id = 4
+		pushl $566
+		call allocate
+		addl $4,%esp
+		movl %eax,16(%ebp)
 	#end allocate
 			
 	#begin deallocate
@@ -57,37 +58,37 @@ _start:
 		addl $4,%esp
 	#end deallocate
 			
-	#begin allocate id = 4
-		pushl $659
-		call allocate
-		addl $4,%esp
-		movl %eax,16(%ebp)
-	#end allocate
-			
 	#begin allocate id = 5
-		pushl $947
+		pushl $296
 		call allocate
 		addl $4,%esp
 		movl %eax,20(%ebp)
 	#end allocate
 			
-	#begin deallocate
-		pushl 16(%ebp)
-		call deallocate
-		addl $4,%esp
-	#end deallocate
-			
 	#begin allocate id = 6
-		pushl $341
+		pushl $384
 		call allocate
 		addl $4,%esp
 		movl %eax,24(%ebp)
 	#end allocate
 			
+	#begin allocate id = 7
+		pushl $373
+		call allocate
+		addl $4,%esp
+		movl %eax,28(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 20(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	
 #last print brk(0)
 	
-	movl $SYS_BRK,%eax
+	movl $45,%eax
 	movl 0,%ebx
 	int $0x80
 
