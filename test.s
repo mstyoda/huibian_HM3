@@ -1,6 +1,5 @@
 
 #test.s
-.include "base.s"
 .include "alloc.s"
 
 .section .text
