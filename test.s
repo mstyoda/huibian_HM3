@@ -16,6 +16,7 @@ _start:
 	pushl %eax
 	pushl $msg
 	call printf
+	addl $8,%esp
 
 	#begin allocate id = 1
 		pushl $710
@@ -93,7 +94,7 @@ _start:
 	pushl %eax
 	pushl $msg
 	call printf
-
+	addl $8,%esp
 
 	#END OF THE TEST
 	movl $0, %ebx
