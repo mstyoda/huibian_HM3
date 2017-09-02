@@ -24,7 +24,7 @@ out.write('''
 
 ''')
 
-n = 3000
+n = 10000
 a = []
 cnt = 0
 for i in range(0,n):
@@ -39,7 +39,7 @@ for i in range(0,n):
 		pushl $%d
 		call allocate
 		addl $4,%%esp
-		#movl %%eax,%d(%%ebp)
+		movl %%eax,%d(%%ebp)
 	#end allocate
 			'''%(cnt,size,cnt*4))
 	else:
