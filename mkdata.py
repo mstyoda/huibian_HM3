@@ -2,7 +2,6 @@ import random
 out = open("test.s","w")
 out.write('''
 #test.s
-.include "base.s"
 .include "alloc.s"
 
 .section .text
