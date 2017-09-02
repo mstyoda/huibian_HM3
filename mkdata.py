@@ -29,7 +29,7 @@ for i in range(0,n):
 		pushl $%d
 		call allocate
 		addl $4,%%esp
-		movl %%eax,$%d(%%ebp)
+		movl %%eax,%d(%%ebp)
 	#end allocate
 			'''%(cnt,size,cnt*4))
 	else:
@@ -46,8 +46,8 @@ for i in range(0,n):
 
 out.write('''
 
-	movl %%ebp,%%esp
-	pop %%ebp
+	movl %ebp,%esp
+	popl %ebp
 	ret
 
 	''')
