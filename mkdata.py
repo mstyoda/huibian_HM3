@@ -13,7 +13,7 @@ _start:
 
 ''')
 
-n = 5
+n = 10
 a = []
 cnt = 0
 for i in range(0,n):
@@ -42,13 +42,7 @@ for i in range(0,n):
 			'''%(a[k - 1] * 4))
 		a.remove(a[k - 1])
 
-out.write('''
 
-	movl %ebp,%esp
-	popl %ebp
-	ret
-
-	''')
 out.write('''
 
 	#END OF THE TEST
