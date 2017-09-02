@@ -19,7 +19,7 @@ allocate_init:
 	popl %ebp
 	ret
 
-globl allocate
+.globl allocate
 .type allocate, @function
 .equ ST_MEM_SIZE, 8
 #stack position of the memory size to allocate

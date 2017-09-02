@@ -1,4 +1,4 @@
-section .data
+.section .data
 #This points to the beginning of the memory
 heap_begin:
 .long 0
