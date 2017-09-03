@@ -9,7 +9,7 @@ msg:
 .globl _start
 _start:
 	movl %esp,%ebp
-	subl $500000,%esp
+	subl $5000,%esp
 
 	call allocate_init
 
@@ -24,7 +24,7 @@ out.write('''
 
 ''')
 
-n = 100000
+n = 100
 a = []
 cnt = 0
 for i in range(0,n):
@@ -32,7 +32,7 @@ for i in range(0,n):
 	if (per <= 60) or (len(a) == 0):
 		cnt += 1
 		#cnt = 1
-		size = random.randint(1,1)
+		size = random.randint(1,100)
 		a.append(cnt)
 		out.write('''
 	#begin allocate id = %d
