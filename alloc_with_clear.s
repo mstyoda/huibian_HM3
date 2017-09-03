@@ -105,6 +105,9 @@ clear:
 	movl heap_begin,%eax
 
 clear_loop:
+	cmpl current_break,%eax
+	je end_clear
+	
 	movl %eax,%ebx
 	addl $HEADER_SIZE,%ebx
 	addl HDR_SIZE_OFFSET(%eax),%ebx
@@ -117,7 +120,7 @@ clear_loop:
 
 	cmpl $AVAILABLE,HDR_AVAIL_OFFSET(%eax)
 	jne next_clear_loop
-	
+
 	movl HDR_SIZE_OFFSET(%eax),%ecx
 	addl HDR_SIZE_OFFSET(%ebx),%ecx
 	addl $HEADER_SIZE,%ecx
@@ -126,7 +129,7 @@ clear_loop:
 	
 	addl HDR_SIZE_OFFSET(%ebx),%ebx
 	addl $HEADER_SIZE,%ebx
-	
+
 	jmp next_clear_loop
 
 end_clear:
