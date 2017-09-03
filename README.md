@@ -34,9 +34,9 @@
 
 本实验中，mkdata.py只生成500000条 alloc指令，返回地址也不存储到栈，参与对比的代码是alloc.s和newalloc.s
 
-使用方法为，将test1.s重命名为test.s之后，执行run.sh和run2.sh即可
+快速的使用方法为，将test1.s重命名为test.s之后，执行run.sh和run3.sh即可
 
-对于alloc.s的返回结果为：
+对于alloc.s的返回结果为(run.sh)：
 	root@f42aaf989e67:/home/huibian_HM3# time ./test
 	brk(0):164945920
 	brk(0):169445920
@@ -44,7 +44,7 @@
 	real	5m17.765s
 	user	5m17.468s
 	sys	0m0.244s
-对于newalloc.s的返回结果为：
+对于newalloc.s的返回结果为(run3.sh)：
 	root@f42aaf989e67:/home/huibian_HM3# time ./test3
 	brk(0):145268736
 	brk(0):153657527
@@ -56,4 +56,20 @@
 
 #实验2（合并空白优化：）
 
-本实验中，mkdata.py
+本实验中，mkdata.py中生成100条alloc和dealloc指令，其中生成alloc指令的概率为60%，每次申请的大小是取自[1,100]的随机数，dealloc是随机从当前
+还没有没释放的块中选择一块。
+
+快速的使用方法为，将test2.s重命名为test.s之后，执行run2.sh和run3.sh即可
+
+对于alloc_with_free.s的返回结果为(run2.sh):
+	root@f42aaf989e67:/home/huibian_HM3# ./test2
+	brk(0):165928960
+	brk(0):165931294
+
+得到一共扩展的堆空间为：165931294 - 165928960 = 2334
+
+对于new_alloc.s的返回结果为(run3.sh):
+	root@f42aaf989e67:/home/huibian_HM3# ./test3
+	brk(0):147423232
+	brk(0):147425566
+得到一共扩展的堆空间为：147425566 - 147423232 = 
