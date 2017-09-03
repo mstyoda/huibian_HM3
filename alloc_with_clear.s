@@ -113,7 +113,7 @@ clear_loop:
 	je end_clear
 	
 	cmpl $AVAILABLE,HDR_AVAIL_OFFSET(%ebx)
-	jne next_clear #if ebx is not AVAILIABLE then end clear
+	jne next_clear_loop #if ebx is not AVAILIABLE then end clear
 
 	movl HDR_SIZE_OFFSET(%eax),%ecx
 	addl HDR_SIZE_OFFSET(%ebx),%ecx
@@ -127,7 +127,7 @@ end_clear:
 	movl %ebp,%esp
 	popl %ebp
 	ret
-	
+
 next_clear_loop:
 	movl %ebx,%eax
 	jmp clear_loop
