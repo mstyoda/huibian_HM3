@@ -32,7 +32,7 @@ for i in range(0,n):
 	if (per <= 90) or (len(a) == 0):
 		cnt += 1
 		#cnt = 1
-		size = random.randint(1,300)
+		size = random.randint(1,2)
 		a.append(cnt)
 		out.write('''
 	#begin allocate id = %d
