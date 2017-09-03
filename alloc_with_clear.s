@@ -112,18 +112,22 @@ clear_loop:
 	cmpl current_break,%ebx
 	je end_clear
 	
-#	cmpl $AVAILABLE,HDR_AVAIL_OFFSET(%ebx)
-#	jne end_clear #if ebx is not AVAILIABLE then end clear
-#
-#	movl HDR_SIZE_OFFSET(%eax),%ecx
-#	addl HDR_SIZE_OFFSET(%ebx),%ecx
-#	addl $HEADER_SIZE,%ecx
+	cmpl $AVAILABLE,HDR_AVAIL_OFFSET(%ebx)
+	jne next_clear #if ebx is not AVAILIABLE then end clear
 
-#	movl %ecx,HDR_SIZE_OFFSET(%eax) #change the size of eax is enough
-#	movl %ebx,%eax #start from ebx
-#	jmp clear_loop
+	movl HDR_SIZE_OFFSET(%eax),%ecx
+	addl HDR_SIZE_OFFSET(%ebx),%ecx
+	addl $HEADER_SIZE,%ecx
+
+	movl %ecx,HDR_SIZE_OFFSET(%eax) #change the size of eax is enough
+	
+	jmp next_clear_loop
 
 end_clear:
 	movl %ebp,%esp
 	popl %ebp
 	ret
+	
+next_clear_loop:
+	movl %ebx,%eax
+	jmp clear_loop
