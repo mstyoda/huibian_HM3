@@ -29,7 +29,7 @@ a = []
 cnt = 0
 for i in range(0,n):
 	per = random.randint(1,100)
-	if (per <= 50) or (len(a) == 0):
+	if (per <= 100) or (len(a) == 0):
 		#cnt += 1
 		cnt = 1
 		size = random.randint(1,1)
