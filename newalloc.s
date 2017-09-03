@@ -84,49 +84,37 @@ move_break:
 	addl $HEADER_SIZE, %ebx #add space for the headers structure
 	movl current_size,%edx #save the last size to %edx
 	addl current_size,%edx
-	cmpl %edx,%ecx #compare the requested size and the last size + 8
+	cmpl %edx,%ecx #compare the requested size and the last size  * 2
 	jle changesize
 
 	#now ecx has the size need to be added
 	movl %ecx,current_size
 	addl %ecx, %ebx #add space to the break for the data
 					#requested
+	movl %ebx, current_break #save the new break
+
 	pushl %eax #save needed registers
 	movl $SYS_BRK, %eax #reset the break
 	int $LINUX_SYSCALL
 	popl %eax #no error check?
 
-	#set this memory as unavailable, since we’re about to give it away
-	movl $UNAVAILABLE, HDR_AVAIL_OFFSET(%eax)
-	movl %ecx, HDR_SIZE_OFFSET(%eax) #set the size of the memory
-	addl $HEADER_SIZE, %eax #move %eax to the actual start of
-							#usable memory.
-	movl %ebx, current_break #save the new break
-	
-	movl %ebp, %esp
-	popl %ebp
-	ret
+	movl %ecx,%edx #let edx = ecx when ecx > edx
+	jmp allocate_here
 
 changesize:
 	#now edx has the size need to be added
 	movl %edx,current_size
 	addl %edx, %ebx #add space to the break for the data
 					#requested
+	movl %ebx, current_break #save the new break
+
 	pushl %eax #save needed registers
 	movl $SYS_BRK, %eax #reset the break
 	int $LINUX_SYSCALL
 	popl %eax #no error check?
 
-	#set this memory as unavailable, since we’re about to give it away
-	movl $UNAVAILABLE, HDR_AVAIL_OFFSET(%eax)
-	movl %ecx, HDR_SIZE_OFFSET(%eax) #set the size of the memory
-	addl $HEADER_SIZE, %eax #move %eax to the actual start of
-							#usable memory.
-	movl %ebx, current_break #save the new break
-	
-	movl %ebp, %esp
-	popl %ebp
-	ret
+	#edx is larger than ecx
+	jmp allocate_here
 
 .globl deallocate
 .type deallocate,@function
