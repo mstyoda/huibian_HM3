@@ -19,41 +19,41 @@ _start:
 
 
 	#begin allocate id = 1
-		pushl $1
+		pushl $104
 		call allocate
 		addl $4,%esp
 		movl %eax,4(%ebp)
 	#end allocate
 			
 	#begin allocate id = 2
-		pushl $2
+		pushl $62
 		call allocate
 		addl $4,%esp
 		movl %eax,8(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 8(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 3
-		pushl $2
+		pushl $83
 		call allocate
 		addl $4,%esp
 		movl %eax,12(%ebp)
 	#end allocate
 			
-	#begin deallocate
-		pushl 4(%ebp)
-		call deallocate
-		addl $4,%esp
-	#end deallocate
-			
 	#begin allocate id = 4
-		pushl $1
+		pushl $159
 		call allocate
 		addl $4,%esp
 		movl %eax,16(%ebp)
 	#end allocate
 			
 	#begin allocate id = 5
-		pushl $1
+		pushl $27
 		call allocate
 		addl $4,%esp
 		movl %eax,20(%ebp)
@@ -65,68 +65,69 @@ _start:
 		addl $4,%esp
 	#end deallocate
 			
+	#begin deallocate
+		pushl 20(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin deallocate
+		pushl 12(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin deallocate
+		pushl 4(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 6
-		pushl $1
+		pushl $87
 		call allocate
 		addl $4,%esp
 		movl %eax,24(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 24(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 7
-		pushl $1
+		pushl $6
 		call allocate
 		addl $4,%esp
 		movl %eax,28(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 28(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 8
-		pushl $2
+		pushl $191
 		call allocate
 		addl $4,%esp
 		movl %eax,32(%ebp)
 	#end allocate
 			
 	#begin allocate id = 9
-		pushl $2
+		pushl $72
 		call allocate
 		addl $4,%esp
 		movl %eax,36(%ebp)
 	#end allocate
 			
-	#begin allocate id = 10
-		pushl $2
-		call allocate
+	#begin deallocate
+		pushl 36(%ebp)
+		call deallocate
 		addl $4,%esp
-		movl %eax,40(%ebp)
-	#end allocate
-			
-	#begin allocate id = 11
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,44(%ebp)
-	#end allocate
-			
-	#begin allocate id = 12
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,48(%ebp)
-	#end allocate
-			
-	#begin allocate id = 13
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,52(%ebp)
-	#end allocate
-			
-	#begin allocate id = 14
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,56(%ebp)
-	#end allocate
+	#end deallocate
 			
 	#begin deallocate
 		pushl 32(%ebp)
@@ -134,57 +135,164 @@ _start:
 		addl $4,%esp
 	#end deallocate
 			
+	#begin allocate id = 10
+		pushl $12
+		call allocate
+		addl $4,%esp
+		movl %eax,40(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 40(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 11
+		pushl $128
+		call allocate
+		addl $4,%esp
+		movl %eax,44(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 44(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 12
+		pushl $154
+		call allocate
+		addl $4,%esp
+		movl %eax,48(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 48(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 13
+		pushl $83
+		call allocate
+		addl $4,%esp
+		movl %eax,52(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 52(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 14
+		pushl $104
+		call allocate
+		addl $4,%esp
+		movl %eax,56(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 56(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 15
-		pushl $1
+		pushl $30
 		call allocate
 		addl $4,%esp
 		movl %eax,60(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 60(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 16
-		pushl $2
+		pushl $11
 		call allocate
 		addl $4,%esp
 		movl %eax,64(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 64(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 17
-		pushl $1
+		pushl $9
 		call allocate
 		addl $4,%esp
 		movl %eax,68(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 68(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 18
-		pushl $2
+		pushl $25
 		call allocate
 		addl $4,%esp
 		movl %eax,72(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 72(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 19
-		pushl $2
+		pushl $100
 		call allocate
 		addl $4,%esp
 		movl %eax,76(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 76(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 20
-		pushl $1
+		pushl $180
 		call allocate
 		addl $4,%esp
 		movl %eax,80(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 80(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 21
-		pushl $2
+		pushl $88
 		call allocate
 		addl $4,%esp
 		movl %eax,84(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 84(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 22
-		pushl $2
+		pushl $191
 		call allocate
 		addl $4,%esp
 		movl %eax,88(%ebp)
@@ -197,210 +305,77 @@ _start:
 	#end deallocate
 			
 	#begin allocate id = 23
-		pushl $2
+		pushl $166
 		call allocate
 		addl $4,%esp
 		movl %eax,92(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 92(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 24
-		pushl $2
+		pushl $15
 		call allocate
 		addl $4,%esp
 		movl %eax,96(%ebp)
 	#end allocate
 			
-	#begin deallocate
-		pushl 12(%ebp)
-		call deallocate
-		addl $4,%esp
-	#end deallocate
-			
 	#begin allocate id = 25
-		pushl $2
+		pushl $192
 		call allocate
 		addl $4,%esp
 		movl %eax,100(%ebp)
 	#end allocate
 			
 	#begin allocate id = 26
-		pushl $2
+		pushl $40
 		call allocate
 		addl $4,%esp
 		movl %eax,104(%ebp)
 	#end allocate
 			
+	#begin deallocate
+		pushl 104(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin deallocate
+		pushl 96(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
 	#begin allocate id = 27
-		pushl $2
+		pushl $125
 		call allocate
 		addl $4,%esp
 		movl %eax,108(%ebp)
 	#end allocate
 			
 	#begin allocate id = 28
-		pushl $2
+		pushl $65
 		call allocate
 		addl $4,%esp
 		movl %eax,112(%ebp)
 	#end allocate
 			
 	#begin allocate id = 29
-		pushl $2
+		pushl $125
 		call allocate
 		addl $4,%esp
 		movl %eax,116(%ebp)
 	#end allocate
 			
-	#begin allocate id = 30
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,120(%ebp)
-	#end allocate
-			
-	#begin allocate id = 31
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,124(%ebp)
-	#end allocate
-			
-	#begin allocate id = 32
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,128(%ebp)
-	#end allocate
-			
-	#begin allocate id = 33
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,132(%ebp)
-	#end allocate
-			
-	#begin allocate id = 34
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,136(%ebp)
-	#end allocate
-			
-	#begin allocate id = 35
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,140(%ebp)
-	#end allocate
-			
-	#begin allocate id = 36
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,144(%ebp)
-	#end allocate
-			
-	#begin allocate id = 37
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,148(%ebp)
-	#end allocate
-			
-	#begin allocate id = 38
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,152(%ebp)
-	#end allocate
-			
 	#begin deallocate
-		pushl 8(%ebp)
+		pushl 100(%ebp)
 		call deallocate
 		addl $4,%esp
 	#end deallocate
-			
-	#begin allocate id = 39
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,156(%ebp)
-	#end allocate
-			
-	#begin allocate id = 40
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,160(%ebp)
-	#end allocate
-			
-	#begin allocate id = 41
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,164(%ebp)
-	#end allocate
-			
-	#begin allocate id = 42
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,168(%ebp)
-	#end allocate
-			
-	#begin deallocate
-		pushl 28(%ebp)
-		call deallocate
-		addl $4,%esp
-	#end deallocate
-			
-	#begin allocate id = 43
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,172(%ebp)
-	#end allocate
-			
-	#begin deallocate
-		pushl 20(%ebp)
-		call deallocate
-		addl $4,%esp
-	#end deallocate
-			
-	#begin allocate id = 44
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,176(%ebp)
-	#end allocate
-			
-	#begin allocate id = 45
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,180(%ebp)
-	#end allocate
-			
-	#begin allocate id = 46
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,184(%ebp)
-	#end allocate
-			
-	#begin allocate id = 47
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,188(%ebp)
-	#end allocate
-			
-	#begin allocate id = 48
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,192(%ebp)
-	#end allocate
 			
 	#begin deallocate
 		pushl 108(%ebp)
@@ -408,121 +383,186 @@ _start:
 		addl $4,%esp
 	#end deallocate
 			
-	#begin allocate id = 49
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,196(%ebp)
-	#end allocate
-			
-	#begin allocate id = 50
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,200(%ebp)
-	#end allocate
-			
-	#begin allocate id = 51
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,204(%ebp)
-	#end allocate
-			
-	#begin allocate id = 52
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,208(%ebp)
-	#end allocate
-			
-	#begin allocate id = 53
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,212(%ebp)
-	#end allocate
-			
-	#begin allocate id = 54
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,216(%ebp)
-	#end allocate
-			
-	#begin allocate id = 55
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,220(%ebp)
-	#end allocate
-			
 	#begin deallocate
-		pushl 204(%ebp)
+		pushl 112(%ebp)
 		call deallocate
 		addl $4,%esp
 	#end deallocate
 			
-	#begin allocate id = 56
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,224(%ebp)
-	#end allocate
-			
 	#begin deallocate
-		pushl 172(%ebp)
+		pushl 116(%ebp)
 		call deallocate
 		addl $4,%esp
 	#end deallocate
 			
-	#begin allocate id = 57
-		pushl $2
+	#begin allocate id = 30
+		pushl $34
 		call allocate
 		addl $4,%esp
-		movl %eax,228(%ebp)
+		movl %eax,120(%ebp)
 	#end allocate
 			
-	#begin allocate id = 58
-		pushl $2
+	#begin deallocate
+		pushl 120(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 31
+		pushl $7
 		call allocate
 		addl $4,%esp
-		movl %eax,232(%ebp)
+		movl %eax,124(%ebp)
 	#end allocate
 			
-	#begin allocate id = 59
-		pushl $2
+	#begin deallocate
+		pushl 124(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 32
+		pushl $176
 		call allocate
 		addl $4,%esp
-		movl %eax,236(%ebp)
+		movl %eax,128(%ebp)
 	#end allocate
 			
-	#begin allocate id = 60
-		pushl $1
+	#begin deallocate
+		pushl 128(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 33
+		pushl $99
 		call allocate
 		addl $4,%esp
-		movl %eax,240(%ebp)
+		movl %eax,132(%ebp)
 	#end allocate
 			
-	#begin allocate id = 61
-		pushl $2
+	#begin deallocate
+		pushl 132(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 34
+		pushl $193
 		call allocate
 		addl $4,%esp
-		movl %eax,244(%ebp)
+		movl %eax,136(%ebp)
 	#end allocate
 			
-	#begin allocate id = 62
-		pushl $2
+	#begin deallocate
+		pushl 136(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 35
+		pushl $7
 		call allocate
 		addl $4,%esp
-		movl %eax,248(%ebp)
+		movl %eax,140(%ebp)
 	#end allocate
 			
-	#begin allocate id = 63
-		pushl $2
+	#begin allocate id = 36
+		pushl $60
 		call allocate
 		addl $4,%esp
-		movl %eax,252(%ebp)
+		movl %eax,144(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 140(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin deallocate
+		pushl 144(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 37
+		pushl $72
+		call allocate
+		addl $4,%esp
+		movl %eax,148(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 148(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 38
+		pushl $133
+		call allocate
+		addl $4,%esp
+		movl %eax,152(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 152(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 39
+		pushl $155
+		call allocate
+		addl $4,%esp
+		movl %eax,156(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 156(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 40
+		pushl $61
+		call allocate
+		addl $4,%esp
+		movl %eax,160(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 160(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 41
+		pushl $71
+		call allocate
+		addl $4,%esp
+		movl %eax,164(%ebp)
+	#end allocate
+			
+	#begin deallocate
+		pushl 164(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 42
+		pushl $153
+		call allocate
+		addl $4,%esp
+		movl %eax,168(%ebp)
+	#end allocate
+			
+	#begin allocate id = 43
+		pushl $59
+		call allocate
+		addl $4,%esp
+		movl %eax,172(%ebp)
 	#end allocate
 			
 	#begin deallocate
@@ -531,178 +571,102 @@ _start:
 		addl $4,%esp
 	#end deallocate
 			
-	#begin allocate id = 64
-		pushl $2
+	#begin allocate id = 44
+		pushl $192
 		call allocate
 		addl $4,%esp
-		movl %eax,256(%ebp)
-	#end allocate
-			
-	#begin allocate id = 65
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,260(%ebp)
-	#end allocate
-			
-	#begin allocate id = 66
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,264(%ebp)
-	#end allocate
-			
-	#begin allocate id = 67
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,268(%ebp)
-	#end allocate
-			
-	#begin allocate id = 68
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,272(%ebp)
-	#end allocate
-			
-	#begin allocate id = 69
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,276(%ebp)
+		movl %eax,176(%ebp)
 	#end allocate
 			
 	#begin deallocate
-		pushl 96(%ebp)
+		pushl 176(%ebp)
 		call deallocate
 		addl $4,%esp
 	#end deallocate
 			
-	#begin allocate id = 70
-		pushl $2
+	#begin allocate id = 45
+		pushl $121
 		call allocate
 		addl $4,%esp
-		movl %eax,280(%ebp)
+		movl %eax,180(%ebp)
 	#end allocate
 			
-	#begin allocate id = 71
-		pushl $2
+	#begin allocate id = 46
+		pushl $77
 		call allocate
 		addl $4,%esp
-		movl %eax,284(%ebp)
-	#end allocate
-			
-	#begin allocate id = 72
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,288(%ebp)
-	#end allocate
-			
-	#begin allocate id = 73
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,292(%ebp)
-	#end allocate
-			
-	#begin allocate id = 74
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,296(%ebp)
-	#end allocate
-			
-	#begin allocate id = 75
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,300(%ebp)
-	#end allocate
-			
-	#begin allocate id = 76
-		pushl $1
-		call allocate
-		addl $4,%esp
-		movl %eax,304(%ebp)
-	#end allocate
-			
-	#begin allocate id = 77
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,308(%ebp)
+		movl %eax,184(%ebp)
 	#end allocate
 			
 	#begin deallocate
-		pushl 272(%ebp)
+		pushl 172(%ebp)
 		call deallocate
 		addl $4,%esp
 	#end deallocate
 			
-	#begin allocate id = 78
-		pushl $1
+	#begin deallocate
+		pushl 180(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 47
+		pushl $140
 		call allocate
 		addl $4,%esp
-		movl %eax,312(%ebp)
+		movl %eax,188(%ebp)
 	#end allocate
 			
-	#begin allocate id = 79
-		pushl $2
+	#begin deallocate
+		pushl 184(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin deallocate
+		pushl 188(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 48
+		pushl $41
 		call allocate
 		addl $4,%esp
-		movl %eax,316(%ebp)
+		movl %eax,192(%ebp)
 	#end allocate
 			
-	#begin allocate id = 80
-		pushl $1
+	#begin deallocate
+		pushl 192(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 49
+		pushl $63
 		call allocate
 		addl $4,%esp
-		movl %eax,320(%ebp)
+		movl %eax,196(%ebp)
 	#end allocate
 			
-	#begin allocate id = 81
-		pushl $1
+	#begin deallocate
+		pushl 196(%ebp)
+		call deallocate
+		addl $4,%esp
+	#end deallocate
+			
+	#begin allocate id = 50
+		pushl $101
 		call allocate
 		addl $4,%esp
-		movl %eax,324(%ebp)
+		movl %eax,200(%ebp)
 	#end allocate
 			
-	#begin allocate id = 82
-		pushl $2
-		call allocate
+	#begin deallocate
+		pushl 200(%ebp)
+		call deallocate
 		addl $4,%esp
-		movl %eax,328(%ebp)
-	#end allocate
-			
-	#begin allocate id = 83
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,332(%ebp)
-	#end allocate
-			
-	#begin allocate id = 84
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,336(%ebp)
-	#end allocate
-			
-	#begin allocate id = 85
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,340(%ebp)
-	#end allocate
-			
-	#begin allocate id = 86
-		pushl $2
-		call allocate
-		addl $4,%esp
-		movl %eax,344(%ebp)
-	#end allocate
+	#end deallocate
 			
 
 #last print brk(0)

@@ -29,10 +29,10 @@ a = []
 cnt = 0
 for i in range(0,n):
 	per = random.randint(1,100)
-	if (per <= 90) or (len(a) == 0):
+	if (per <= 20) or (len(a) == 0):
 		cnt += 1
 		#cnt = 1
-		size = random.randint(1,2)
+		size = random.randint(1,200)
 		a.append(cnt)
 		out.write('''
 	#begin allocate id = %d
