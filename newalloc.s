@@ -83,8 +83,8 @@ divide:
 move_break_init:
 	addl $HEADER_SIZE, %ebx #add space for the headers structure
 	movl current_size,%edx #save the last size to %edx
-	addl $1,%edx
-	cmpl %edx,%ecx #compare the requested size and the last size + 1
+	addl current_size,%edx
+	cmpl %edx,%ecx #compare the requested size and the last size + 8
 	jle changesize
 
 move_break:

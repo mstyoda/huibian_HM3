@@ -24,7 +24,7 @@ out.write('''
 
 ''')
 
-n = 1000
+n = 10
 a = []
 cnt = 0
 for i in range(0,n):
