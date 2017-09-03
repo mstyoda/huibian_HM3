@@ -121,6 +121,9 @@ clear_loop:
 
 	movl %ecx,HDR_SIZE_OFFSET(%eax) #change the size of eax is enough
 	
+	addl HDR_SIZE_OFFSET(%ebx),%ebx
+	addl $HEADER_SIZE,%ebx
+
 	jmp next_clear_loop
 
 end_clear:
