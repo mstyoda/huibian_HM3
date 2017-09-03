@@ -2,6 +2,11 @@
 #This points to the beginning of the memory
 heap_begin:
 .long 0
+
+#This points to the last region size
+current_size:
+.long 0
+
 #This points to one location past the memory we are managing
 current_break:
 .long 0
