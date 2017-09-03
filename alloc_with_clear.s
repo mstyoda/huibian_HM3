@@ -92,8 +92,8 @@ deallocate:
 	movl $AVAILABLE, HDR_AVAIL_OFFSET(%eax)
 	
 	push %eax
-	call clear
-	pop %eax
+	#call clear
+	popl %eax
 	
 	ret
 .globl clear
