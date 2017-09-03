@@ -92,7 +92,7 @@ deallocate:
 	movl $AVAILABLE, HDR_AVAIL_OFFSET(%eax)
 	
 	push %eax
-	#call clear
+	call clear
 	popl %eax
 	
 	ret
@@ -102,9 +102,9 @@ deallocate:
 clear:
 	push %ebp
 	movl %esp,%ebp
+	movl heap_begin,%eax
 
 clear_loop:
-	movl heap_begin,%eax
 	movl %eax,%ebx
 	addl $HEADER_SIZE,%ebx
 	addl HDR_SIZE_OFFSET(%eax),%ebx
@@ -112,16 +112,16 @@ clear_loop:
 	cmpl current_break,%ebx
 	je end_clear
 	
-	cmpl $AVAILABLE,HDR_AVAIL_OFFSET(%ebx)
-	jne end_clear #if ebx is not AVAILIABLE then end clear
+#	cmpl $AVAILABLE,HDR_AVAIL_OFFSET(%ebx)
+#	jne end_clear #if ebx is not AVAILIABLE then end clear
+#
+#	movl HDR_SIZE_OFFSET(%eax),%ecx
+#	addl HDR_SIZE_OFFSET(%ebx),%ecx
+#	addl $HEADER_SIZE,%ecx
 
-	movl HDR_SIZE_OFFSET(%eax),%ecx
-	addl HDR_SIZE_OFFSET(%ebx),%ecx
-	addl $HEADER_SIZE,%ecx
-
-	movl %ecx,HDR_SIZE_OFFSET(%eax) #change the size of eax is enough
-	movl %ebx,%eax #start from ebx
-	jmp clear_loop
+#	movl %ecx,HDR_SIZE_OFFSET(%eax) #change the size of eax is enough
+#	movl %ebx,%eax #start from ebx
+#	jmp clear_loop
 
 end_clear:
 	movl %ebp,%esp
