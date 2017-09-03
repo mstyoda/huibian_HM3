@@ -36,7 +36,7 @@ allocate:
 
 loop_begin:#we iterate through memory regions
 	cmpl %ebx, %eax #need more memory if these are equal 
-	je move_break_init
+	je move_break
 	
 	#grab the size of this memory
 	movl HDR_SIZE_OFFSET(%eax), %edx
@@ -80,14 +80,13 @@ divide:
 	movl %edx, HDR_SIZE_OFFSET(%ecx) #set size of the right region
 	jmp allocate_end
 
-move_break_init:
+move_break:
 	addl $HEADER_SIZE, %ebx #add space for the headers structure
 	movl current_size,%edx #save the last size to %edx
 	addl current_size,%edx
 	cmpl %edx,%ecx #compare the requested size and the last size + 8
 	jle changesize
 
-move_break:
 	#now ecx has the size need to be added
 	movl %ecx,current_size
 	addl %ecx, %ebx #add space to the break for the data
@@ -109,8 +108,25 @@ move_break:
 	ret
 
 changesize:
-	movl %edx,%ecx #change ecx to current_size + 1(when current_size + 1 is lagger)
-	jmp move_break
+	#now edx has the size need to be added
+	movl %edx,current_size
+	addl %edx, %ebx #add space to the break for the data
+					#requested
+	pushl %eax #save needed registers
+	movl $SYS_BRK, %eax #reset the break
+	int $LINUX_SYSCALL
+	popl %eax #no error check?
+
+	#set this memory as unavailable, since we’re about to give it away
+	movl $UNAVAILABLE, HDR_AVAIL_OFFSET(%eax)
+	movl %ecx, HDR_SIZE_OFFSET(%eax) #set the size of the memory
+	addl $HEADER_SIZE, %eax #move %eax to the actual start of
+							#usable memory.
+	movl %ebx, current_break #save the new break
+	
+	movl %ebp, %esp
+	popl %ebp
+	ret
 
 .globl deallocate
 .type deallocate,@function
