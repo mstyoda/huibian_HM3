@@ -36,7 +36,7 @@ allocate:
 
 loop_begin:#we iterate through memory regions
 	cmpl %ebx, %eax #need more memory if these are equal 
-	je move_break 
+	je move_break
 	
 	#grab the size of this memory
 	movl HDR_SIZE_OFFSET(%eax), %edx
@@ -53,6 +53,14 @@ next_location:
 allocate_here:
 	#if we’ve made it here, that means that the region header of the
 	#region to allocate is in %eax, mark space as unavailable
+	#%edx has the size of the region, and %ecx has the size ineed
+	movl $HEADER_SIZE,%ebx
+	addl %ecx,%ebx
+	cmpl %edx,%ebx
+	
+	jle divide #if curent region is larger than we need,we can divide the region
+
+allocate_end:	
 	movl $UNAVAILABLE, HDR_AVAIL_OFFSET(%eax)
 	addl $HEADER_SIZE, %eax #move %eax to the usable memory
 
@@ -60,25 +68,55 @@ allocate_here:
 	popl %ebp
 	ret
 
+divide:
+	#the left region has size %ecx, the right has size %edx - %ebx
+	movl %ecx,HDR_SIZE_OFFSET(%eax)
+	
+	addl %eax,%ecx
+	addl $HEADER_SIZE,%ecx #now %ecx point to the begin of the right region
+
+	movl $AVAILABLE, HDR_AVAIL_OFFSET(%ecx) #set available
+	subl %ebx,%edx
+	movl %edx, HDR_SIZE_OFFSET(%ecx) #set size of the right region
+	jmp allocate_end
+
 move_break:
 	addl $HEADER_SIZE, %ebx #add space for the headers structure
+	movl current_size,%edx #save the last size to %edx
+	addl current_size,%edx
+	cmpl %edx,%ecx #compare the requested size and the last size  * 2
+	jle changesize
+
+	#now ecx has the size need to be added
+	movl %ecx,current_size
 	addl %ecx, %ebx #add space to the break for the data
 					#requested
+	movl %ebx, current_break #save the new break
+
 	pushl %eax #save needed registers
 	movl $SYS_BRK, %eax #reset the break
 	int $LINUX_SYSCALL
 	popl %eax #no error check?
 
-	#set this memory as unavailable, since we’re about to give it away
-	movl $UNAVAILABLE, HDR_AVAIL_OFFSET(%eax)
-	movl %ecx, HDR_SIZE_OFFSET(%eax) #set the size of the memory
-	addl $HEADER_SIZE, %eax #move %eax to the actual start of
-							#usable memory.
+	movl %ecx,HDR_SIZE_OFFSET(%eax)
+	movl %ecx,%edx #let edx = ecx when ecx > edx
+	jmp allocate_here
+
+changesize:
+	#now edx has the size need to be added
+	movl %edx,current_size
+	addl %edx, %ebx #add space to the break for the data
+					#requested
 	movl %ebx, current_break #save the new break
-	
-	movl %ebp, %esp
-	popl %ebp
-	ret
+
+	pushl %eax #save needed registers
+	movl $SYS_BRK, %eax #reset the break
+	int $LINUX_SYSCALL
+	popl %eax #no error check?
+
+	#edx is larger than ecx
+	movl %edx,HDR_SIZE_OFFSET(%eax)
+	jmp allocate_here
 
 .globl deallocate
 .type deallocate,@function
@@ -94,8 +132,8 @@ deallocate:
 	push %eax
 	call clear
 	popl %eax
-	
 	ret
+
 .globl clear
 .type clear,@function
 
@@ -125,7 +163,7 @@ clear_loop:
 	addl HDR_SIZE_OFFSET(%ebx),%ecx
 	addl $HEADER_SIZE,%ecx
 
-	#movl %ecx,HDR_SIZE_OFFSET(%eax) #change the size of eax is enough
+	movl %ecx,HDR_SIZE_OFFSET(%eax) #change the size of eax is enough
 	
 	addl HDR_SIZE_OFFSET(%ebx),%ebx
 	addl $HEADER_SIZE,%ebx
