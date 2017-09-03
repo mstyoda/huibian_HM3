@@ -98,6 +98,7 @@ move_break:
 	int $LINUX_SYSCALL
 	popl %eax #no error check?
 
+	movl %ecx,HDR_SIZE_OFFSET(%eax)
 	movl %ecx,%edx #let edx = ecx when ecx > edx
 	jmp allocate_here
 
@@ -114,6 +115,7 @@ changesize:
 	popl %eax #no error check?
 
 	#edx is larger than ecx
+	movl %edx,HDR_SIZE_OFFSET(%eax)
 	jmp allocate_here
 
 .globl deallocate
