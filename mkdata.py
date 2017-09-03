@@ -9,7 +9,7 @@ msg:
 .globl _start
 _start:
 	movl %esp,%ebp
-	subl $10000,%esp
+	subl $500000,%esp
 
 	call allocate_init
 
@@ -24,7 +24,7 @@ out.write('''
 
 ''')
 
-n = 100
+n = 100000
 a = []
 cnt = 0
 for i in range(0,n):
