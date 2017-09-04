@@ -55,7 +55,7 @@ PS: 但是由于时间不足，没能在DDL之前调试出来。所以只能把�
 
 #实验1（系统调用优化）：
 
-本实验中，mkdata.py只生成500000条 alloc指令，返回地址也不存储到栈（随便存到了4(%ebp)），参与对比的代码是alloc.s和newalloc.s
+本实验中，mkdata.py只生成500000条 alloc指令，返回地址也不存储到栈（随便存到了-4(%ebp)），参与对比的代码是alloc.s和newalloc.s
 
 快速的使用方法为，将test1.s重命名为test.s之后，执行run.sh和run3.sh即可
 
@@ -88,17 +88,37 @@ PS: 但是由于时间不足，没能在DDL之前调试出来。所以只能把�
 快速的使用方法为，将test2.s重命名为test.s之后，执行run2.sh和run3.sh即可
 
 对于alloc_with_free.s的返回结果为(run2.sh):
-	root@f42aaf989e67:/home/huibian_HM3# ./test2
-	brk(0):152702976
-	brk(0):152703728
+	root@f42aaf989e67:/home/huibian_HM3# bash run2.sh
+	alloc_with_clear.s: Assembler messages:
+	alloc_with_clear.s: Warning: end of file not at end of a line; newline inserted
+	base.s: Warning: end of file in comment; newline inserted
+	base.s: Assembler messages:
+	base.s: Warning: end of file in comment; newline inserted
+	
+	brk(0):140652544
+	brk(0):140653248
 
-得到一共扩展的堆空间为：152703728 - 152702976 = 752
+	real	0m0.001s
+	user	0m0.000s
+	sys	0m0.000s
+
+得到一共扩展的堆空间为：140653248 - 140652544 = 704
 
 对于newalloc.s的返回结果为(run3.sh):
-	root@f42aaf989e67:/home/huibian_HM3# ./test3
-	brk(0):136527872
-	brk(0):136529464
-得到一共扩展的堆空间为：136529464 - 136527872 = 1592
+	root@f42aaf989e67:/home/huibian_HM3# bash run3.sh
+	newalloc.s: Assembler messages:
+	newalloc.s: Warning: end of file not at end of a line; newline inserted
+	base.s: Warning: end of file in comment; newline inserted
+	base.s: Assembler messages:
+	base.s: Warning: end of file in comment; newline inserted
+	brk(0):148430848
+	brk(0):148433740
+
+	real	0m0.001s
+	user	0m0.000s
+	sys	0m0.000s
+
+得到一共扩展的堆空间为：148433740 - 148430848 = 2892
 
 本实验中设置alloc指令的概率远比dealloc小是为了尽量产生位置相邻的空块，让效果更加明显，从结果来看，优化效果显著。
 
