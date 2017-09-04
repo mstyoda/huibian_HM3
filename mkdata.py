@@ -41,7 +41,7 @@ for i in range(0,n):
 		addl $4,%%esp
 		movl %%eax,%d(%%ebp)
 	#end allocate
-			'''%(cnt,size,cnt*4))
+			'''%(cnt,size,-cnt*4))
 	else:
 		k = random.randint(1,len(a))
 		
@@ -51,7 +51,7 @@ for i in range(0,n):
 		call deallocate
 		addl $4,%%esp
 	#end deallocate
-			'''%(a[k - 1] * 4))
+			'''%(-a[k - 1] * 4))
 		a.remove(a[k - 1])
 
 out.write('''
