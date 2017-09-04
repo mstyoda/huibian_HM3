@@ -9,7 +9,7 @@ msg:
 .globl _start
 _start:
 	movl %esp,%ebp
-	subl $500000,%esp
+	subl $100000,%esp
 
 	call allocate_init
 
@@ -24,12 +24,12 @@ out.write('''
 
 ''')
 
-n = 100000
+n = 20000
 a = []
 cnt = 0
 for i in range(0,n):
 	per = random.randint(1,100)
-	if (per <= 30) or (len(a) == 0):
+	if (per <= 50) or (len(a) == 0):
 		cnt += 1
 		#cnt = 1
 		size = random.randint(1,20)
