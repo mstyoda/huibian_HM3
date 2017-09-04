@@ -1,4 +1,3 @@
-git pull
 as -gstabs -o alloc_with_clear.o alloc_with_clear.s --32
 as -gstabs -o test.o test.s --32
 as -gstabs -o base.o base.s --32
